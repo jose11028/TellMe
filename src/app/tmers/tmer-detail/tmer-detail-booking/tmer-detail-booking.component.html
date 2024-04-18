@@ -1,0 +1,90 @@
+<div class="booking">
+    <h3 class="booking-price">${{tmer?.dailyRate}} <span class="booking-per-night">per session</span></h3>
+    <hr>
+    <ng-container *ngIf="auth.isAuthenticated()">
+        <form #bookingFomr="ngForm">
+            <label>Dates</label>
+            <input type="text" class="form-control daterangepicker-input" name="daterangeInput" daterangepicker
+                [options]="options" (selected)="selectedDate($event, daterange)" />
+            <div class="form-group">
+                <label for="guests">Guests</label>
+                <input [(ngModel)]="newBooking.guests"
+                    name="guests"
+                    type="number"
+                    class="form-control"
+                    id="guests"
+                    aria-describedby="emailHelp"
+                    required>
+            </div>
+        </form>
+        <!-- <button (click)="reserveTmer()" class="btn btn-danger btn-confirm btn-block">Reserve place now</button> -->
+        <button (click)="openConfirmModal(content)" 
+                [disabled]="!bookingFomr.form.valid || !newBooking.startAt || !newBooking.endAt"
+                class="btn btn-danger btn-confirm btn-block">Reserve place now</button>
+        <hr>
+    </ng-container>
+
+    <div *ngIf="!auth.isAuthenticated()" class="should-login">
+        <div class="alert alert-danger" role="alert" style="background-color: #dc3545;">
+            <a routerLink="/login"  class="alert-link text-white" style="text-decoration: none;">Login and book this person today</a>
+        </div>
+    </div>
+
+
+    <p class="booking-note-title">People are interested into this host</p>
+    <p class="booking-note-text">
+        More than 500 people checked this host in last month.
+    </p>
+</div>
+
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Confirm Booking <p>{{newBooking.startAt}} to {{newBooking.endAt}}</p>
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')"></button>
+        <span aria-hidden="true">&times;</span>
+    </div>
+
+    
+
+
+<div class="modal-body">
+  <em>{{newBooking.days}}</em> hours /
+  <em>{{tmer?.dailyRate}}</em> per Hour
+  <p>Guests: <em>{{newBooking.guests}}</em></p>
+  <p>Price: <em>{{newBooking.totalPrice}}$</em></p>
+
+  <div *ngIf="errors && errors.length > 0" class="alert alert-danger modal-error">
+    <p *ngFor="let error of errors">{{error.detail}}</p>
+  </div>
+</div>
+
+
+<!--     
+    
+    <div class="modal-body">
+        <em>{{newBooking.days}}</em> hours /
+        <em>{{tmer?.dailyRate}}</em> per Hour
+        <p>Guests: <em>{{newBooking.guests}}</em></p>
+        <p>Price: <em>{{newBooking.totalPrice}}$</em></p>
+
+        <p *ngIf="errors && errors.length > 0">Do you confirm booking for selected hours?</p>
+    </div>
+
+
+
+
+
+<div *ngIf="errors && errors.length > 0" class="alert alert-danger modal-error">
+  <p *ngFor="let error of errors">{{error.detail}}</p>
+</div> -->
+
+
+    <div class="modal-footer">
+        <button *ngIf="errors.length === 0" type="button" class="btn btn-bwm" (click)="createBooking()">Confirm</button>
+        <button type="button" class="btn btn-bwm" (click)="c('Save click')">Close</button>
+    </div>
+</ng-template>
+
