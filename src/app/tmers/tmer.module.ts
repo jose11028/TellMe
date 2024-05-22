@@ -39,7 +39,6 @@ const routes: Routes = [
       { path: ':tmerId', component: TmerDetailComponent,  }, //this option (AuthGuard) block the option /login
       {path:':city/homes', component:TmerSearchComponent} 
     ]}
-
 ]
 
 

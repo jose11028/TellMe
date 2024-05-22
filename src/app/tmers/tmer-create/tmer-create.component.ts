@@ -22,13 +22,27 @@ export class TmerCreateComponent implements OnInit {
   constructor(private tmerService:TmerService, private router:Router) { }
 
   handleImageChange() {
-    this.newTmer.image = "/assets/images/model.jpeg";;
+    this.newTmer.image = "/assets/images/model.jpeg";
   }
 
   ngOnInit() {
     this.newTmer = new Tmer();
     this.newTmer.shared = false;
   }
+
+  /* createTmer() {
+    this.tmerService.createTmer(this.newTmer).subscribe(
+      (tmer:Tmer) => {
+        this.router.navigate([`/tmers/${tmer._id}`]);
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse.error && errorResponse.error.error) { // Check if error object and error message exist
+          this.errors = [errorResponse.error.error];
+        } else {
+          this.errors = ['An unknown error occurred.']; // Fallback error message
+        }
+      })
+  } */
 
   createTmer() {
     this.tmerService.createTmer(this.newTmer).subscribe(

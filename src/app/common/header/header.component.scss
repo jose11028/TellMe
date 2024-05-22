@@ -11,6 +11,9 @@
     width: 300px;
   }
 
+    .accent-text {
+      color: #ff9900 !important;
+    }
 
   .navbar-brand {
     margin-right: 30px;
@@ -19,6 +22,15 @@
     color: $main-color;
     font-weight: 500;
   }
+/* Assuming the favicon.ico is applied to the .navbar-brand */
+.navbar-brand img {
+  width: 60px;
+  /* Adjust the width as needed */
+  height: 60px;
+  /* Adjust the height as needed */
+  border-radius: 50%;
+  /* Make the image circular */
+}
 
 
   .nav-item {

@@ -6,76 +6,42 @@
         <form #tmerForm="ngForm">
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text"
-             class="form-control"
-              id="title"
-              name="title"
-              [(ngModel)]="newTmer.title"
-              required>
+            <input type="text" class="form-control" id="title" name="title" [(ngModel)]="newTmer.title" required>
           </div>
 
           <div class="form-group">
             <label for="city">City</label>
-            <input type="text"
-             class="form-control"
-             id="city"
-              name="city"
-              [(ngModel)]="newTmer.city"
-              required>
+            <input type="text" class="form-control" id="city" name="city" [(ngModel)]="newTmer.city" required>
           </div>
 
           <div class="form-group">
             <label for="street">Street</label>
-            <input type="text"
-             class="form-control"
-            id="street"
-            name="streat"
-            [(ngModel)]="newTmer.street"
-            required>
+            <input type="text" class="form-control" id="street" name="street" [(ngModel)]="newTmer.street" required>
           </div>
 
           <div class="form-group">
             <label for="category">Category</label>
-            <select class="form-control"
-             id="category"
-             name="category"
-             [(ngModel)]="newTmer.category"
-             required>
+            <select class="form-control" id="category" name="category" [(ngModel)]="newTmer.category" required>
               <option *ngFor="let category of tmerCategories">{{category}}</option>
-         
+
             </select>
           </div>
 
           <div class="form-group">
             <label for="image">Image</label>
-            <input type="file"
-             class="form-control"
-             id="image"
-             placeholder="Upload file..."
-             (change)="handleImageChange()"
-             name="image"
-             required
-             >
+            <input type="file" class="form-control" id="image" placeholder="Upload file..."
+              (change)="handleImageChange()" name="image" required>
           </div>
 
           <div class="form-group">
             <label for="age">Age</label>
-            <input type="number"
-             class="form-control"
-              id="age"
-              name="age"
-             [(ngModel)]="newTmer.age"
-             required>
+            <input type="number" class="form-control" id="age" name="age" [(ngModel)]="newTmer.age" required>
           </div>
 
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea rows="5"
-             class="form-control"
-              id="description"
-              name="description"
-             [(ngModel)]="newTmer.description"
-             ></textarea>
+            <textarea rows="5" class="form-control" id="description" name="description"
+              [(ngModel)]="newTmer.description"></textarea>
           </div>
 
           <div class="form-group">
@@ -84,32 +50,21 @@
               <div class="input-group-prepend">
                 <div class="input-group-text">$</div>
               </div>
-              <input type="number"
-               name="dailyRate"
-                class="form-control"
-                 id="dailyRate"
-                 name="dailyRate"
-             [(ngModel)]="newTmer.dailyRate"
-             required>
+              <input type="number" name="dailyRate" class="form-control" id="dailyRate" name="dailyRate"
+                [(ngModel)]="newTmer.dailyRate" required>
             </div>
           </div>
 
           <div class="form-group">
             <label for="shared">Shared</label>
             <br> <!-- Add a line break -->
-            <input type="checkbox"
-             id="shared"
-              name="shared"
-             [(ngModel)]="newTmer.shared"
-             required>
+            <input type="checkbox" id="shared" name="shared" [(ngModel)]="newTmer.shared" required>
           </div>
 
 
 
-          <button (click)="createTmer()"
-                  [disabled]="!tmerForm.form.valid"
-                   type="button"
-                    class="btn btn-bwm">Submit</button>
+          <button (click)="createTmer()" [disabled]="!tmerForm.form.valid" type="button"
+            class="btn btn-bwm">Submit</button>
         </form>
 
         <div *ngIf="errors.length > 0" class="alert alert-danger">

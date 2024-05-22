@@ -34,7 +34,7 @@ html,body,p {
   border-color: $main-color;
   color: white;
   padding: 15px 30px;
-  font-size: 20px !important;
+  font-size: 20px;
 
   &:hover, &:focus, &:active {
     border-color: $main-color !important;
