@@ -10,7 +10,7 @@
     "postinstall": "ngcc",
     "start": "npm run start --prefix server",
     "start-dev": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build --prod",
+    "build": "ng build --configuration production",
     "heroku-postbuild": "npm run build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
