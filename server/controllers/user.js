@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-const config = require('../config/dev');
+/* const config = require('../config/dev'); */
+const config = require('../config');
 const { async } = require('rxjs');
 
 exports.auth = async function(req, res) {
