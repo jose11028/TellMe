@@ -125,32 +125,3 @@ function isValidBooking(proposedBooking, tmer) {
 
 
 
-/*  const Booking = require('../models/booking');
-const Tmer = require('../models/tmer');
-//const { normalizeErrors } = require('../helpers/mongoose');
-const mongoose = require('mongoose');
-
-exports.createBooking =  function (req, res) {
-
-    const { startAt, endAt, totalPrice, guests, days, tmer } = req.body;
-    const user = res.locals.user;
-
-    const booking = new Booking({ startAt, endAt, totalPrice, guests, days });
-    
-    Tmer.findById(tmer._id)
-        .populate('bookings')
-        .populate('user')
-        .exec(function (err, foundTmer) {
-            if (err) {
-                return res.status(422).send({ errors: normalizeErrors(err.errors) });
-            }
-              if (foundRental.user.id === user.id) {
-                  return res.status(422).send({ error: [{ title: 'Invalid user!', detail: 'Cannot create booking on your tellMe' }]});
-            }
-
-            //check here for valid booking
-            return res.json({ booking, foundTmer });
-            
-        })
-    
-}   */

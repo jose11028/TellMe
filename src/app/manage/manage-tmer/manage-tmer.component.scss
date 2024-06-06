@@ -1,6 +1,5 @@
 $main-color: #007bff; // Define the main color variable
 
-
 #userRentals {
     .card {
         margin-bottom: 20px;
@@ -30,11 +29,6 @@ $main-color: #007bff; // Define the main color variable
         font-size: 12px;
     }
 
-
-    .btn-success, .btn-danger {
-        font-size: 12px;
-    }
-
     .card-footer {
         font-size: 12px;
 
@@ -44,10 +38,9 @@ $main-color: #007bff; // Define the main color variable
             margin: 0;
         }
 
-       
         .confirm-message {
             font-weight: bold;
-            margin-right: 10px
+            margin-right: 10px;
         }
     }
 
@@ -85,6 +78,24 @@ $main-color: #007bff; // Define the main color variable
         /* Change background to blue on hover */
         color: white;
         /* Change text color to white on hover */
+    }
+
+    // Additional styles for the button within the alert-warning class
+    .alert-warning {
+        .btn-bwm {
+            font-size: 14px;
+            padding: 15px;
+            background-color: #007bff;
+            border: 1px solid #007bff;
+            color: white;
+            transition: background-color 0.3s, color 0.3s;
+            margin-top: 10px;
+
+            &:hover {
+                background-color: #0056b3;
+                border-color: #0056b3;
+            }
+        }
     }
 }
 

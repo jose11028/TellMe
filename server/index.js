@@ -2,9 +2,11 @@ const express = require('express');
 
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const config = require('./config/dev');
+/* const config = require('./config/dev'); */
+const config = require('./config');
 const Tmer = require('./models/tmer');
 const FakeDb = require('./fake-db');
+const path = require('path');
 
 //routes
 const tmerRoutes = require('./routes/tmers'),
@@ -14,13 +16,16 @@ const tmerRoutes = require('./routes/tmers'),
 mongoose.connect(config.DB_URI).then(async () => {
 
 
- /*  Within this code block, a new instance of the
-  FakeDb class is created using const fakeDb = new FakeDb();.
-  This instance is created to utilize the methods of the FakeDb class.*/
-  const fakeDb = new FakeDb();
+  if (process.env.NODE_ENV !== 'production') {
+     /*  Within this code block, a new instance of the
+      FakeDb class is created using const fakeDb = new FakeDb();.
+      This instance is created to utilize the methods of the FakeDb class.*/
+      const fakeDb = new FakeDb();
 
-  // the function seedDb calls teh function pushTmersToDb()
-  //await fakeDb.seedDb();
+      // the function seedDb calls teh function pushTmersToDb()
+      //await fakeDb.seedDb();
+  }
+
 });
 
 
@@ -43,6 +48,21 @@ app.use('/assets', express.static('D:/angular/Rental/app2023-10-17New/tm2-app/sr
 app.use('/api/v1/tmers', tmerRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/bookings', bookingRoutes);
+
+if (process.env.NODE_ENV === 'production') {
+  //__dirname means server folder, '..' means go a level up and find folder dist
+  const appPath = path.join(__dirname, '..', 'dist', 'tm2-app');
+
+  app.use(express.static(appPath));
+
+
+  app.get('*', function (req, res) {
+    res.sendFile(path.resolve(appPath, 'index.html'));
+  });
+}
+
+
+
 
 //process.env is an object in Node.js that contains the user environment.
 // In this case, process.env.PORT is attempting to retrieve the value of the PORT
