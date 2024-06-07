@@ -2,7 +2,7 @@
   "name": "tm2-app",
   "version": "0.0.0",
   "engines": {
-    "node": "18.16.1",
+    "node": "18.19.0",
     "npm": "7.24.2"
   },
   "scripts": {
