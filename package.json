@@ -11,7 +11,7 @@
     "start": "npm run start --prefix server",
     "start-dev": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build --configuration production",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "npm install -g @angular/cli@18.0.2 && ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -57,6 +57,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~4.9.4"
+    "typescript": "~4.9.4",
+    "@angular/cli": "^18.0.2"
   }
 }
