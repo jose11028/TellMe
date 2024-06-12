@@ -29,6 +29,7 @@
     "@angular/router": "^15.1.0",
     "@ng-bootstrap/ng-bootstrap": "^6.0.0",
     "@types/jquery": "^3.2.12",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.0",
     "daterangepicker": "^3.1.0",
     "express": "^4.18.2",
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.1.5",
+    "@angular/cli": "^18.0.2",
     "@angular/compiler-cli": "^15.1.0",
     "@types/googlemaps": "^3.39.13",
     "@types/jasmine": "~4.3.0",
@@ -57,7 +59,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~4.9.4",
-    "@angular/cli": "^18.0.2"
+    "typescript": "~4.9.4"
   }
 }
