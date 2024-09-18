@@ -26,20 +26,26 @@ import { TmerUpdateComponent } from './tmer-update/tmer-update.component';
 
 import { AuthGuard } from '../auth/shared/auth.guard';
 import { TmerGuard } from './shared/tmer.guard';
+import { ContactComponent } from './Contact/Contact.component';
 
 
 const routes: Routes = [
   {
-    path: "tmers",
+    path: 'tmers',
     component: TmersComponent,
     children: [
       { path: '', component: TmerListComponent },
       { path: 'new', component: TmerCreateComponent, canActivate: [AuthGuard] },
-      { path: ':tmerId/edit', component: TmerUpdateComponent, canActivate: [AuthGuard, TmerGuard] },
+      {
+        path: ':tmerId/edit',
+        component: TmerUpdateComponent,
+        canActivate: [AuthGuard, TmerGuard],
+      },
       { path: ':tmerId', component: TmerDetailComponent }, //this option (AuthGuard) blocks the option /login
-      { path: ':city/homes', component: TmerSearchComponent }
-    ]
-  }
+      { path: ':city/homes', component: TmerSearchComponent },
+    ],
+  },
+  { path: 'contact', component: ContactComponent }
 ];
 
 @NgModule({
@@ -53,6 +59,7 @@ const routes: Routes = [
     TmerSearchComponent,
     TmerCreateComponent,
     TmerUpdateComponent,
+    ContactComponent,
   ],
   imports: [
     CommonModule,
