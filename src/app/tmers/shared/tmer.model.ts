@@ -10,31 +10,7 @@ export class Tmer {
     'Consultan', 'Journalist', 'Entrepreneur', 'Athlete', 'Engineer',
     'Economist','Lawyer','Actor/Actress','Designer','Not applicable'];
 
-/*   private _city: string | undefined;
 
-  get city(): string | undefined {
-    return this._city ? this._city.charAt(0).toUpperCase() + this._city.slice(1).toLowerCase() : undefined;
-  }
-
-  set city(value: string | undefined) {
-    this._city = value;
-  }
-
-  _id: string | undefined;
-  title: string | undefined;
-  street: string | undefined;
-  category: string | undefined;
-  image: string | undefined;
-  bedrooms: number | undefined;
-  age: number | undefined;
-  description: string | undefined;
-  dailyRate: number | undefined;
-  shared: boolean | undefined;
-  user: {
-    username: string;
-  }
-  createdAt: string | undefined;
-  bookings: Booking[]; */
 
   
   _id:string | undefined;
@@ -43,7 +19,9 @@ export class Tmer {
   street:string | undefined;
   category: string | undefined;
   image: string | undefined;
-  bedrooms: number | undefined;
+  //bedrooms: number | undefined;
+  bedrooms: string | undefined;
+  languajes: string | undefined;
   age: number | undefined;
   description: string | undefined;
   dailyRate: number | undefined;

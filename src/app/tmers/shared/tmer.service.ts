@@ -31,6 +31,16 @@ export class TmerService {
   public deleteTmer(tmerId: string): Observable<any> {
     return this.http.delete(`/api/v1/tmers/${tmerId}`);
   }
+
+  public updateTmer(tmerId: string, tmerData: any): Observable<any> {
+    return this.http.patch(`/api/v1/tmers/${tmerId}`, tmerData);
+  }
+
+  public verifyTmerUser(tmerId: string): Observable<any> {
+    return this.http.get(`/api/v1/tmers/${tmerId}/verify-user`);
+  }
+
+
  }
 
 

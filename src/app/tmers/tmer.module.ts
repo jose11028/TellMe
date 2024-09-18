@@ -1,16 +1,16 @@
-//this is RentalModule.component.ts
 import { NgModule } from '@angular/core';
 import { TmerListComponent } from './tmer-list/tmer-list.component';
 import { TmerListItemComponent } from './tmer-list-item/tmer-list-item.component';
 import { TmersComponent } from './tmers.component';
-import { NgPipesModule } from 'ngx-pipes';
+import { NgPipesModule, UcWordsPipe } from 'ngx-pipes';
+
 
 import { MapModule } from '../common/map/map.module';
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { FormsModule } from '@angular/forms';
-
+import { EditableModule } from '../common/components/editable/editable.module';
 import { CommonModule } from '@angular/common';
-import {Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { TmerService } from './shared/tmer.service';
@@ -22,29 +22,27 @@ import { TmerDetailComponent } from './tmer-detail/tmer-detail.component';
 import { TmerDetailBookingComponent } from './tmer-detail/tmer-detail-booking/tmer-detail-booking.component';
 import { TmerSearchComponent } from './tmer-search/tmer-search.component';
 import { TmerCreateComponent } from './tmer-create/tmer-create.component';
-
+import { TmerUpdateComponent } from './tmer-update/tmer-update.component';
 
 import { AuthGuard } from '../auth/shared/auth.guard';
-
-
-
+import { TmerGuard } from './shared/tmer.guard';
 
 
 const routes: Routes = [
-  {path:"tmers",
-   component:TmersComponent,
+  {
+    path: "tmers",
+    component: TmersComponent,
     children: [
       { path: '', component: TmerListComponent },
-      {path:'new',component:TmerCreateComponent, canActivate: [AuthGuard]},
-      { path: ':tmerId', component: TmerDetailComponent,  }, //this option (AuthGuard) block the option /login
-      {path:':city/homes', component:TmerSearchComponent} 
-    ]}
-]
+      { path: 'new', component: TmerCreateComponent, canActivate: [AuthGuard] },
+      { path: ':tmerId/edit', component: TmerUpdateComponent, canActivate: [AuthGuard, TmerGuard] },
+      { path: ':tmerId', component: TmerDetailComponent }, //this option (AuthGuard) blocks the option /login
+      { path: ':city/homes', component: TmerSearchComponent }
+    ]
+  }
+];
 
-
-
-
-@NgModule ({
+@NgModule({
   declarations: [
     TmerListComponent,
     TmerListItemComponent,
@@ -53,7 +51,8 @@ const routes: Routes = [
     UppercasePipe,
     TmerDetailBookingComponent,
     TmerSearchComponent,
-    TmerCreateComponent
+    TmerCreateComponent,
+    TmerUpdateComponent,
   ],
   imports: [
     CommonModule,
@@ -62,16 +61,15 @@ const routes: Routes = [
     MapModule,
     NgPipesModule,
     Daterangepicker,
-    FormsModule
-    
-    
-   
+    FormsModule,
+    EditableModule,
   ],
-  providers: [TmerService,
-              HelperService,
-              BookingService
-  ]
+  providers: [
+    TmerService,
+    HelperService,
+    BookingService,
+    UcWordsPipe,
+    TmerGuard,
+  ],
 })
-export class TmerModule {
-
-}
+export class TmerModule {}

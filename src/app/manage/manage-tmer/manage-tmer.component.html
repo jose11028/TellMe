@@ -13,8 +13,11 @@
                     </div>
                     <div class="card-footer text-muted">
                         <p>Created at {{tmer.createdAt | formatDate}}</p>
+                      
+
                         <button (click)="showConfirmation(i)" *ngIf="!tmerDeleteIndex" type="button"
                             class="btn btn-bwm btn-delete">Delete</button>
+                            <a class="btn btn-warning btn-edit" routerLink="/tmers/{{tmer._id}}/edit">Edit</a>
                         <div *ngIf="tmerDeleteIndex === i">
                             <p class="confirm-message">Do you confirm delete?</p>
                             <button (click)="tmer._id && deleteTmer(tmer._id)" class="btn btn-success">Yes</button>
