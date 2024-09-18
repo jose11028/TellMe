@@ -37,13 +37,15 @@
               "node_modules/font-awesome/scss/font-awesome.scss",
               "node_modules/ng2-daterangepicker/assets/daterangepicker.css",
               "./node_modules/ngx-toastr/toastr.css"
-
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.slim.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
-
+            ],
+            "allowedCommonJsDependencies": [
+              "moment",
+              "ng2-daterangepicker"
             ]
           },
           "configurations": {
