@@ -9,6 +9,9 @@ import { MapModule } from '../common/map/map.module';
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { FormsModule } from '@angular/forms';
 import { EditableModule } from '../common/components/editable/editable.module';
+import { ImageUploadModule } from '../common/components/image-upload/image-upload.module';
+
+
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -70,6 +73,7 @@ const routes: Routes = [
     Daterangepicker,
     FormsModule,
     EditableModule,
+    ImageUploadModule
   ],
   providers: [
     TmerService,

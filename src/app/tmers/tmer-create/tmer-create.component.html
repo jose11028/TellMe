@@ -29,9 +29,10 @@
           </div>
 
           <div class="form-group">
-            <label for="image">Image</label>
-            <input type="file" class="form-control" id="image" placeholder="Upload file..."
-              (change)="handleImageChange()" name="image" required>
+         
+            <app-image-upload (imageUploaded)="handleImageUpload($event)"
+                              (imageError)="handleImageError()">
+            </app-image-upload>
           </div>
 
           <div class="form-group">
@@ -64,7 +65,7 @@
 
 
 
-          <button (click)="createTmer()" [disabled]="!tmerForm.form.valid" type="button"
+          <button (click)="createTmer()" [disabled]="!tmerForm.form.valid || !newTmer.image" type="button"
             class="btn btn-bwm">Submit</button>
         </form>
 
