@@ -9,10 +9,14 @@
 
     <span *ngIf="!isActiveInput" class="{{className}} inline">{{transformView(entity[entityField])}}</span>
     <div class="inline">
-        <button *ngIf="!isActiveInput" class="btn btn-sm btn-warning btn-editable" (click)="isActiveInput = true">
-            Edit
+        <button *ngIf="!isActiveInput" 
+                 class="btn btn-sm btn-warning btn-editable" 
+                 (click)="isActiveInput = true">
+                 Edit
         </button>
-        <button *ngIf="isActiveInput" class="btn btn-sm btn-success btn-editable" (click)="updateEntity()">
+        <button *ngIf="isActiveInput" 
+            class="btn btn-sm btn-success btn-editable" 
+             (click)="updateEntity()">
             Save
         </button>
         <button *ngIf="isActiveInput" 

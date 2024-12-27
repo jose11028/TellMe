@@ -8,10 +8,11 @@ const Tmer = require('./models/tmer');
 const FakeDb = require('./fake-db');
 const path = require('path');
 
-//routes
+//routes. here we register every route. We have 4 routes under folder routes. (tmers,users,bookings,image-upload)
 const tmerRoutes = require('./routes/tmers'),
   userRoutes = require('./routes/users'),
-  bookingRoutes = require('./routes/bookings');
+  bookingRoutes = require('./routes/bookings'),
+  imageUploadRoutes = require('./routes/image-upload');
 
 mongoose.connect(config.DB_URI).then(async () => {
 
@@ -48,6 +49,7 @@ app.use('/assets', express.static('D:/angular/Rental/app2023-10-17New/tm2-app/sr
 app.use('/api/v1/tmers', tmerRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/bookings', bookingRoutes);
+app.use('/api/v1', imageUploadRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   //__dirname means server folder, '..' means go a level up and find folder dist

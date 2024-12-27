@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Tmer = require('../models/tmer');
 const User = require('../models/user');
+
 const UserCtrl = require('../controllers/user');
 
 router.get('/secret', UserCtrl.authMiddleware, function(req, res) {
