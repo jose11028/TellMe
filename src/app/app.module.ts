@@ -12,8 +12,8 @@ import { TmersComponent } from './tmers/tmers.component';   //this is RentalComp
 
 import { TmerModule } from './tmers/tmer.module';
 import { AuthModule } from './auth/auth.module';
-
 import { ManageModule } from './manage/manage.module';
+import { UserModule } from './user/user.module';
 
 
 
@@ -26,10 +26,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent
-    ],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
@@ -38,9 +35,10 @@ const routes: Routes = [
     NgbModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    ManageModule
+    ManageModule,
+    UserModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

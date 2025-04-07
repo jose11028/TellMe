@@ -16,10 +16,11 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      const token = this.auth.getAuthToken();
+
+    /* console.log('Outgoing request:', request); */
       
-
-
+    const token = this.auth.getAuthToken();
+      
       if (token) {
           request = request.clone({
               setHeaders: {

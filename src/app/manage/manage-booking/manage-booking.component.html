@@ -1,8 +1,99 @@
 <section id="userBookings">
     <h1 class="page-title">My Bookings</h1>
     <div class="row">
-        <ng-container *ngIf="bookings && bookings.length > 0"> <!-- Check for bookings length -->
-            <div class="col-md-4" *ngFor="let booking of bookings"> <!-- Iterate bookings here -->
+        <ng-container *ngIf="bookings && bookings.length > 0">
+            <div class="col-md-4" *ngFor="let booking of bookings">
+                <div class="card text-center">
+                    <div class="card-header">
+                        {{ booking?.tmer?.category || 'Deleted Tmer' }}
+                    </div>
+                    <div class="card-block">
+                        <ng-container *ngIf="booking?.tmer">
+                            <h4 class="card-title">
+                                {{ booking?.tmer?.title }} - {{ booking?.tmer?.city | ucwords }}
+                            </h4>
+                            <p class="card-text booking-desc">{{ booking?.tmer?.description }}</p>
+                        </ng-container>
+                        <p class="card-text booking-days">
+                            {{ booking?.startAt | formatDate: 'Y/MM/DD h:mm A' }} to
+                            {{ booking?.endAt | formatDate: 'h:mm A' }} | {{ booking?.hours }} hours
+                        </p>
+                        <p class="card-text">
+                            <span>Price: </span>
+                            <span class="booking-price-value">{{ booking?.totalPrice }} $</span>
+                        </p>
+                        <a *ngIf="booking?.tmer" class="btn btn-bwm" routerLink="/tmers/{{ booking?.tmer?._id }}">
+                            Go to Tmer
+                        </a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Created {{ booking?.createdAt | formatDate: 'Y/MM/DD h:mm A' }}
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <div *ngIf="bookings && bookings.length === 0" class="alert alert-warning">
+            You have no bookings created. Go to tmers section and book a person today to speak with.
+            <a class="btn btn-bwm" routerLink="/tmers">Available Tmers</a>
+        </div>
+    </div>
+
+    <h1 class="page-title">My Pending Bookings</h1>
+    <div class="row">
+        <ng-container *ngIf="payments && payments.length > 0">
+            <div class="col-md-4" *ngFor="let payment of payments">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Booking made by {{ payment?.fromUser?.username || 'Unknown User' }}
+                    </div>
+                    <div class="card-block">
+                        <ng-container *ngIf="payment?.booking?.tmer">
+                            <h4 class="card-title">
+                                {{ payment?.booking?.tmer?.title }} - {{ payment?.booking?.tmer?.city | ucwords }}
+                            </h4>
+                            <p class="card-text booking-desc">{{ payment?.booking?.tmer?.description }}</p>
+                        </ng-container>
+                        <p class="card-text booking-days">
+                            {{ payment?.booking?.startAt | formatDate: 'Y/MM/DD h:mm A' }} to
+                            {{ payment?.booking?.endAt | formatDate: 'h:mm A' }} | {{ payment?.booking?.hours }} hours
+                        </p>
+                        <p class="card-text">
+                            <span>Revenue: </span>
+                            <span class="booking-price-value">{{ payment.amount / 100 }} $</span>
+                        </p>
+                        <p class="card-text">
+                            <span>Status: </span>
+                            <span class="booking-price-value">{{ payment.status }} </span>
+                        </p>
+                        <div *ngIf="payment.status === 'pending'">
+                            <button class='btn btn-success' (click)="acceptPayment(payment)"
+                                [disabled]="loading[payment._id]" [ngClass]="{'loading-opacity': loading[payment._id]}">
+                                Confirm
+                            </button>
+                            <button class='btn btn-danger ml-2' (click)="declinePayment(payment)"
+                                [disabled]="loading[payment._id]" [ngClass]="{'loading-opacity': loading[payment._id]}">
+                                Decline
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Created {{ payment?.booking?.createdAt | formatDate: 'Y/MM/DD h:mm A' }}
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <div *ngIf="payments && payments.length === 0" class="alert alert-warning">
+            You have no pending bookings!
+        </div>
+    </div>
+</section>
+
+
+<!-- <section id="userBookings">
+    <h1 class="page-title">My Bookings</h1>
+    <div class="row">
+        <ng-container *ngIf="bookings && bookings.length > 0">
+            <div class="col-md-4" *ngFor="let booking of bookings">
                 <div class="card text-center">
                     <div class="card-header">
                         {{booking.tmer ? booking.tmer.category : 'Deleted Tmer'}}
@@ -12,21 +103,70 @@
                             <h4 class="card-title">{{booking.tmer.title}} - {{booking.tmer.city | ucwords}} </h4>
                             <p class="card-text booking-desc">{{booking.tmer.description}}</p>
                         </ng-container>
-                        <p class="card-text booking-days"> {{booking.startAt | formatDate}} - {{booking.endAt | formatDate}} | {{booking.days}} days</p>
-                        
-                        <p class="card-text "><span>Price: </span> <span class="booking-price-value">
-                             {{booking.totalPrice}}  $</span></p> 
-                        <a *ngIf="booking.tmer" class="btn btn-bwm" routerLink="/tmers/{{booking.tmer._id}}">Go to Tmer</a> 
+                        <p class="card-text booking-days">
+                          
+                            {{booking.startAt | formatDate: 'Y/MM/DD h:mm A'}} to {{booking.endAt | formatDate: 'h:mm
+                            A'}} | {{booking.hours}} hours
+                        </p>
+                        <p class="card-text">
+                            <span>Price: </span>
+                            <span class="booking-price-value">{{booking.totalPrice}} $</span>
+                        </p>
+                        <a *ngIf="booking.tmer" class="btn btn-bwm" routerLink="/tmers/{{booking.tmer._id}}">Go to
+                            Tmer</a>
                     </div>
                     <div class="card-footer text-muted">
-                        Created {{booking.createdAt | formatDate}} 
+                        Created {{booking.createdAt | formatDate: 'Y/MM/DD h:mm A'}}
                     </div>
                 </div>
             </div>
         </ng-container>
-        <div *ngIf="bookings && bookings.length === 0" class="alert alert-warning"> 
-            You have no bookings created go to tmers section and book a person today to speek with.
-            <a class="btn btn-bwm" routerLink="/tmers">Available Tmers</a> 
+        <div *ngIf="bookings && bookings.length === 0" class="alert alert-warning">
+            You have no bookings created. Go to tmers section and book a person today to speak with.
+            <a class="btn btn-bwm" routerLink="/tmers">Available Tmers</a>
         </div>
     </div>
-</section>
+
+
+
+    <h1 class="page-title">My Pending Bookings</h1>
+    <div class="row">
+        <ng-container *ngIf="payments && payments.length > 0">
+            <div class="col-md-4" *ngFor="let payment of payments">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Booking made by {{payment.fromUser.username}}
+                    </div>
+                    <div class="card-block">
+                        <ng-container *ngIf="payment.booking.tmer">
+
+                            <h4 class="card-title">{{payment.booking.tmer.title}} - {{payment.booking.tmer.city | ucwords}} </h4>
+                            <p class="card-text booking-desc">{{payment.booking.tmer.description}}</p>
+                        </ng-container>
+                        <p class="card-text booking-days">
+                           
+                            {{payment.booking.startAt | formatDate: 'Y/MM/DD h:mm A'}} to {{payment.booking.endAt | formatDate: 'h:mm
+                            A'}} | {{payment.booking.hours}} hours
+                        </p>
+                        <p class="card-text">
+                            <span>Price: </span>
+                            <span class="booking-price-value">{{payment.booking.totalPrice}} $</span>
+                        </p>
+                        <a *ngIf="payment.booking.tmer" class="btn btn-bwm" routerLink="/tmers/{{payment.booking.tmer._id}}">Go to</a>
+
+                    </div>
+                    <div class="card-footer text-muted">
+                        Created {{payment.booking.createdAt | formatDate: 'Y/MM/DD h:mm A'}}
+
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <div *ngIf="payments && payments.length === 0" class="alert alert-warning">
+            You have no pending bookings!
+          
+        </div>
+    </div>
+
+
+</section> -->

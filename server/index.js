@@ -12,7 +12,9 @@ const path = require('path');
 const tmerRoutes = require('./routes/tmers'),
   userRoutes = require('./routes/users'),
   bookingRoutes = require('./routes/bookings'),
+  paymentRoutes = require('./routes/payments'),
   imageUploadRoutes = require('./routes/image-upload');
+const photoUploadRoutes = require('./routes/photo-upload'); // Import the route
 
 mongoose.connect(config.DB_URI).then(async () => {
 
@@ -49,7 +51,9 @@ app.use('/assets', express.static('D:/angular/Rental/app2023-10-17New/tm2-app/sr
 app.use('/api/v1/tmers', tmerRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/bookings', bookingRoutes);
+app.use('/api/v1/payments', paymentRoutes);
 app.use('/api/v1', imageUploadRoutes);
+app.use('/api/v1/photo-upload', photoUploadRoutes); // Photo upload route
 
 if (process.env.NODE_ENV === 'production') {
   //__dirname means server folder, '..' means go a level up and find folder dist
