@@ -5,17 +5,14 @@ import { Booking } from 'src/app/booking/shared/booking.model';
 @Component({
   selector: 'app-manage-tmer-booking',
   templateUrl: './manage-tmer-booking.component.html',
-  styleUrls: ['./manage-tmer-booking.component.css']
+  styleUrls: ['./manage-tmer-booking.component.css'],
 })
 export class ManageTmerBookingComponent implements OnInit {
-
   @Input() bookings: Booking[];
 
-  constructor(public modalService: NgbModal) { }
+  constructor(public modalService: NgbModal) {}
 
-  
-  ngOnInit() {
+  ngOnInit(): void {
     console.log(this.bookings);
   }
-
 }

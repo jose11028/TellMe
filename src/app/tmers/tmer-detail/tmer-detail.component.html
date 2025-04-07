@@ -1,24 +1,10 @@
-<!-- <div *ngIf="tmer">
-  <p>{{tmer._id}}</p>
-  <p>{{tmer.title}}</p>
-  <p>{{tmer.city}}</p>
-  <p>{{tmer.street}}</p>
-  <p>{{tmer.category}}</p>
-  <p>{{tmer.description}}</p>
-  <p>{{tmer.dailyRate}} $</p>
-
-</div>
- -->
-
- <section id="tmerDetails" *ngIf="tmer">
+<section id="tmerDetails" *ngIf="tmer">
   <div class="upper-section">
     <div class="row">
       <div class="col-md-8">
         <img src="{{tmer.image}}" alt="">
       </div>
       <div class="col-md-4">
-        <!-- Will be replaced with map !!!! -->
-        <!-- <img src="{{tmer.image}}" alt=""> -->
         <bwm-map [location]="tmer.city + ', ' + tmer.street"></bwm-map>
       </div>
     </div>
@@ -26,22 +12,24 @@
   <div class="details-section">
     <div class="row">
       <div class="col-md-8">
+        <div class="tabs">
+          <!-- Updated routerLink to include tmerId -->
+          <button class="tab-button" [routerLink]="['/tmers', tmer._id, 'photo-upload']">Photos</button>
+        </div>
         <div class="tmer">
-          <h2 class="tmer-type {{tmer.category}}">{{tmer.shared ? 'Available' : 'No available'}} {{tmer.category}}</h2>
-            <div class="tmer-owner">
-              <img src="{{tmer.image}}" alt="">
-              <span>{{tmer.user.username}}</span>
-            </div>
-
-          <h1 class="tmer-title">{{tmer.title}}</h1>
-          <h2 class="tmer-city">{{tmer.city | uppercase}}</h2>
+         Category: <h2 class="tmer-type {{tmer.category}}">{{tmer.shared ? 'Available' : 'No available'}} {{tmer.category}}</h2>
+          <div class="tmer-owner">
+            <img src="{{tmer.image}}" alt="">
+            Username:<span>{{tmer.user.username}}</span>
+          </div>
+          <hr>
+          Title:<h1 class="tmer-title">{{tmer.title}}</h1>
+          <hr>
+          City:<h2 class="tmer-city">{{tmer.city | uppercase}}</h2>
           <div class="tmer-room-info">
             <span><i class="fa fa-globe"></i>{{tmer.bedrooms}} Languages</span>
-           
           </div>
-          <p class="tmer-description">
-            {{tmer.description}}
-          </p>
+          Description:<p class="tmer-description">{{tmer.description}}</p>
           <hr>
           <div class="tmer-assets">
             <h3 class="title">Assets</h3>
@@ -61,13 +49,8 @@
         </div>
       </div>
       <div class="col-md-4">
-        <bwm-tmer-detail-booking 
-                  [tmer]="tmer">
-        </bwm-tmer-detail-booking>
-
+        <bwm-tmer-detail-booking [tmer]="tmer"></bwm-tmer-detail-booking>
       </div>
     </div>
   </div>
 </section>
-
- 

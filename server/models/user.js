@@ -24,7 +24,9 @@ const userSchema = new Schema({
         min: [4, 'Too short, min is 4 characters'],
         max:[32, 'Too long, max is 32 characters'],
         required: 'Email is required'
-     },
+    },
+    stripeCustomerId: String,
+    revenue: { type: Number, default: 0 },
     tmers: [{ type: Schema.Types.ObjectId, ref: 'Tmer' }],
     bookings: [{ type: Schema.Types.ObjectId, ref: 'Booking' }]
 });
@@ -59,5 +61,5 @@ userSchema.pre('save', function(next) {
 });
 
 
-//here, we export the model. Model name Tmer and schema
+//here, we export the model. Model name User and schema
 module.exports = mongoose.model('User', userSchema);

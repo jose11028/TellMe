@@ -17,14 +17,9 @@ export class TmerDetailComponent implements OnInit {
   constructor(private route:ActivatedRoute, private tmerService:  TmerService) {}
 
   ngOnInit(): void {
-  
-
     this.route.params.subscribe(
       (params) => {
-        console.log(params);
-
         this.getTmer(params['tmerId']);
-
       })
   }
 

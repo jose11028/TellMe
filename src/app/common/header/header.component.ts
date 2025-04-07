@@ -13,15 +13,11 @@ export class HeaderComponent{
               private router: Router) { }
 
   logout() {
-
-    
-    this.auth.logout();
-    
+    this.auth.logout();   
     this.router.navigate(['/login']);
   }
   
   search(city: string) {
     city ? this.router.navigate([`/tmers/${city}/homes`]) : this.router.navigate(['/tmers']);
   }
-
 }

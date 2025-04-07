@@ -1,11 +1,12 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 import * as moment from 'moment';
 
 @Pipe({
-    name: 'formatDate'
+  name: 'formatDate',
 })
 export class FormatDatePipe implements PipeTransform {
-    transform(value: string | undefined): string {
-        return moment(value).format('Y/MM/DD');
-    }
+  transform(value: string | undefined, format: string = 'Y/MM/DD'): string {
+    if (!value) return ''; // Handle undefined or null values
+    return moment(value).format(format); // Use the provided format
+  }
 }

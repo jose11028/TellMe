@@ -4,13 +4,12 @@ import { TmerListItemComponent } from './tmer-list-item/tmer-list-item.component
 import { TmersComponent } from './tmers.component';
 import { NgPipesModule, UcWordsPipe } from 'ngx-pipes';
 
-
 import { MapModule } from '../common/map/map.module';
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { FormsModule } from '@angular/forms';
 import { EditableModule } from '../common/components/editable/editable.module';
 import { ImageUploadModule } from '../common/components/image-upload/image-upload.module';
-
+import { PaymentModule } from '../payment/payment.module';
 
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
@@ -30,7 +29,8 @@ import { TmerUpdateComponent } from './tmer-update/tmer-update.component';
 import { AuthGuard } from '../auth/shared/auth.guard';
 import { TmerGuard } from './shared/tmer.guard';
 import { ContactComponent } from './Contact/Contact.component';
-
+import { PhotoUploadComponent } from './photo-upload/photo-upload.component';
+import { PhotoUploadService } from './photo-upload/photo-upload.service';
 
 const routes: Routes = [
   {
@@ -44,11 +44,12 @@ const routes: Routes = [
         component: TmerUpdateComponent,
         canActivate: [AuthGuard, TmerGuard],
       },
-      { path: ':tmerId', component: TmerDetailComponent }, //this option (AuthGuard) blocks the option /login
+      { path: ':tmerId', component: TmerDetailComponent },
       { path: ':city/homes', component: TmerSearchComponent },
+      { path: ':tmerId/photo-upload', component: PhotoUploadComponent },
     ],
   },
-  { path: 'contact', component: ContactComponent }
+  { path: 'contact', component: ContactComponent },
 ];
 
 @NgModule({
@@ -73,7 +74,8 @@ const routes: Routes = [
     Daterangepicker,
     FormsModule,
     EditableModule,
-    ImageUploadModule
+    ImageUploadModule,
+    PaymentModule,
   ],
   providers: [
     TmerService,
@@ -81,6 +83,7 @@ const routes: Routes = [
     BookingService,
     UcWordsPipe,
     TmerGuard,
+    PhotoUploadService,
   ],
 })
 export class TmerModule {}

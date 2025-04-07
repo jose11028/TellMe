@@ -30,6 +30,7 @@
     "@aws-sdk/client-s3": "^3.670.0",
     "@aws-sdk/lib-storage": "^3.670.0",
     "@ng-bootstrap/ng-bootstrap": "^6.0.0",
+    "@stripe/stripe-js": "^6.1.0",
     "@types/jquery": "^3.2.12",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.0",
@@ -50,6 +51,7 @@
     "popper.js": "^1.16.1",
     "rxjs": "~7.8.0",
     "stream-browserify": "^3.0.0",
+    "stripe": "^17.7.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

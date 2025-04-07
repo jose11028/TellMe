@@ -16,17 +16,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) { 
      const storedMeta = localStorage.getItem('bwm_meta');
-     this.decodedToken = storedMeta ? JSON.parse(storedMeta) : new DecodedToken();
+      this.decodedToken = storedMeta ? JSON.parse(storedMeta) : new DecodedToken();
   }
 
-  //this is the original function for token before change it
- /*  private saveToken(token: any): string {
-    this.decodedToken = jwt_decode(token);
-    const tokenString = JSON.stringify(token);
-    localStorage.setItem('bwm_auth', tokenString);
-    localStorage.setItem('bwm_meta', JSON.stringify(this.decodedToken));
-    return tokenString;
-  } */
+
 
   //this is new function for token
   private saveToken(token: any): string {
@@ -82,5 +75,8 @@ export class AuthService {
   public getUsername(): string {
     return this.decodedToken.username;
   }
-
+  
+  public getUserId(): string {
+    return this.decodedToken.userId;
+  }
 }
